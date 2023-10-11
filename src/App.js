@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
+import ExpenseForm from "./components/Expenses/ExpenseForm";
 const App = () => {
   const expenses = [
     {
@@ -24,10 +26,17 @@ const App = () => {
       location: "Oman",
     },
   ];
-
+  const saveFormData = (entereData) => {
+    const receiveData = {
+      ...entereData,
+      id: Math.random().toString(),
+    };
+    console.log(entereData);
+  };
   return (
     <div>
       <h2>Let's get started!</h2>
+      <ExpenseForm saveDate={saveFormData} />
       <Expenses items={expenses} />
     </div>
   );
