@@ -1,33 +1,59 @@
 import { useState } from "react";
-
+import "./ExpenseForm.css";
 const ExpenseForm = () => {
-  const [enteredTitle, setenteredTitle] = useState();
-  const [enteredAmount, setenteredAmount] = useState();
-  const [enteredDate, setenteredDate] = useState();
-  const titleHandler = (e) => {
-    setenteredTitle(e.target.value);
-    console.log(enteredTitle);
+  // const [enteredTitle, setenteredTitle] = useState();
+  // const [enteredAmount, setenteredAmount] = useState();
+  // const [enteredDate, setenteredDate] = useState();
+  const [userInput, setUserInput] = useState({
+    enteredTitle: "",
+    enteredAmount: "",
+    enteredDate: "",
+  });
+  const titleHandler = (event) => {
+    setUserInput({
+      ...userInput,
+      enteredTitle: event.target.value,
+    });
   };
-  const amountHandler = (e) => {
-    setenteredAmount(e.target.value);
-    console.log(enteredAmount);
+  const amountHandler = (event) => {
+    setUserInput({
+      ...userInput,
+      enteredAmount: event.target.value,
+    });
   };
-  const dateHandeler = (e) => {
-    setenteredDate(e.target.value);
-    console.log(enteredDate);
+  const dateHandeler = (event) => {
+    setUserInput({
+      ...userInput,
+      enteredDate: event.target.value,
+    });
+  };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const obj = {
+      title: userInput.enteredTitle,
+      amount: userInput.enteredAmount,
+      date: userInput.enteredDate,
+    };
+    console.log(obj);
   };
   return (
-    <div>
-      <div>
-        Expense title:
-        <input onChange={titleHandler} value={enteredTitle} />
-        Expense Amount:
-        <input onChange={amountHandler} value={enteredAmount} />
-        Date:
-        <input onChange={dateHandeler} value={enteredDate} />
+    <form onSubmit={submitHandler}>
+      <div className="new-expense__controls">
+        <div className="'new-expense__control">
+          <label>Title</label>
+          <input type="text" onChange={titleHandler} />
+        </div>
+        <div className="'new-expense__control">
+          <label>Amount</label>
+          <input type="text" onChange={amountHandler} />
+        </div>
+        <div className="'new-expense__control">
+          <label>Date</label>
+          <input type="text" onChange={dateHandeler} />
+        </div>
       </div>
-      <button>Add Expense</button>
-    </div>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 export default ExpenseForm;
