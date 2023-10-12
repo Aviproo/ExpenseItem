@@ -4,7 +4,6 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setenteredTitle] = useState();
   const [enteredAmount, setenteredAmount] = useState();
   const [enteredDate, setenteredDate] = useState();
-  const [newExpenses, setNewExpenses] = useState(<h4>Add Expenses</h4>);
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: "",
   //   enteredAmount: "",
@@ -43,32 +42,24 @@ const ExpenseForm = (props) => {
     setenteredAmount("");
     setenteredDate("");
   };
-
-  const addForm = () => {
-    setNewExpenses(
-      <form onSubmit={submitHandler}>
-        <div className="new-expense__controls">
-          <div className="'new-expense__control">
-            <label>Title</label>
-            <input type="text" value={enteredTitle} onChange={titleHandler} />
-          </div>
-          <div className="'new-expense__control">
-            <label>Amount</label>
-            <input
-              type="number"
-              value={enteredAmount}
-              onChange={amountHandler}
-            />
-          </div>
-          <div className="'new-expense__control">
-            <label>Date</label>
-            <input type="date" value={enteredDate} onChange={dateHandeler} />
-          </div>
+  return (
+    <form onSubmit={submitHandler}>
+      <div className="new-expense__controls">
+        <div className="'new-expense__control">
+          <label>Title</label>
+          <input type="text" value={enteredTitle} onChange={titleHandler} />
         </div>
-        <button type="submit">Submit</button>
-      </form>
-    );
-  };
-  return <div onClick={addForm}>{newExpenses}</div>;
+        <div className="'new-expense__control">
+          <label>Amount</label>
+          <input type="number" value={enteredAmount} onChange={amountHandler} />
+        </div>
+        <div className="'new-expense__control">
+          <label>Date</label>
+          <input type="date" value={enteredDate} onChange={dateHandeler} />
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 export default ExpenseForm;
